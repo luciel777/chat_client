@@ -17,15 +17,15 @@ if(isset($_POST['enter'])){
         $_SESSION['name'] = stripslashes(htmlspecialchars($_POST['name']));
     }
     else{
-        echo '<span class="error">Please type in a name</span>';
+        echo '<span class="error">PLEASE LOG IN WITH A NAME</span>';
     }
 }
  
 function loginForm(){
     echo
     '<div id="loginform">
-    <p>ENTER NAME TO CONTINUE</p>
-    <form action="https://rfachat.neocities.org/" method="post">
+    <p>LOG IN WITH A NAME</p>
+    <form action="index.php" method="post">
       <label for="name">Name &mdash;</label>
       <input type="text" name="name" id="name" />
       <input type="submit" name="enter" id="enter" value="Enter" />
@@ -34,8 +34,16 @@ function loginForm(){
 }
  
 ?>
- </script>
-<html>
+ 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+ 
+        <title>Tuts+ Chat Application</title>
+        <meta name="description" content="Tuts+ Chat Application" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
     <body>
     <?php
     if(!isset($_SESSION['name'])){
@@ -46,7 +54,7 @@ function loginForm(){
         <div id="wrapper">
             <div id="menu">
                 <p class="welcome">Welcome, <b><?php echo $_SESSION['name']; ?></b></p>
-                <p class="logout"><a id="exit" href="javascript:window.open('','_self').close();">LOGOUT</a></p>
+                <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
             </div>
  
             <div id="chatbox">
@@ -95,7 +103,7 @@ function loginForm(){
                 setInterval (loadLog, 2500);
  
                 $("#exit").click(function () {
-                    var exit = confirm("ARE YOU READY TO LOG OUT?");
+                    var exit = confirm("Are you sure you want to end the session?");
                     if (exit == true) {
                     window.location = "index.php?logout=true";
                     }
